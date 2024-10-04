@@ -1,0 +1,16 @@
+---
+import Main from '../../layouts/auth/Main.astro';
+import {Input, Password, Submit} from '../../components/auth/inputs'
+---
+
+<Main title="Sign in to your account.", action="login">
+    <Input label="Email" name="email" slot="inputs"/>
+    <Password label="Password" name="password" slot="inputs"/>
+    <div class="flex justify-end" slot="after-inputs">
+        <a href="./forgotEmail" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</a>
+    </div>   
+    <Submit text="Sign in" id="sign-in-button" slot="buttons"/>
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6" slot="after-main">
+        <p class="text-white">Don't have an account? <a href="register" class="font-bold hover:underline">Sign up</a>.</p>
+    </div>
+</Main>

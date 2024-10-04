@@ -1,0 +1,12 @@
+---
+import Main from '../../layouts/auth/Main.astro';
+import {Input, Password, Submit} from '../../components/auth/inputs'
+---
+
+<Main title="Sign up a new account." action="register">
+    <Input label="Your name" name="userFullname" slot="inputs"/>
+    <Input label="Email" name="email" slot="inputs"/>
+    <Password label="Password" name="password" slot="inputs"/>
+    <Password label="Type password again" name="passwordConfirm" slot="inputs"/>    
+    <Submit text="Sign up" id='sign-up-button' slot="buttons"/>    
+</Main>
