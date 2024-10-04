@@ -51,7 +51,10 @@ const { title, action } = Astro.props;
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(await response.json());
+            data = await response.json();
+            if (data.redirect){
+                window.location.replace(data.redirect);
+            }
         }catch(error){
             console.error(error.message);
         }
