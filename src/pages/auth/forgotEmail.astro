@@ -1,0 +1,15 @@
+---
+import Main from '../../layouts/auth/Main.astro';
+import {Input, Submit} from '../../components/auth/inputs'
+---
+
+<Main title="Forgot your password?" action="sendResetLink">
+    <Input label="Email" name="email" slot="inputs"/>
+    <div class="flex justify-start" slot="after-inputs">
+        <p class="text-sm text-purple-600 mb-6">By pressing "Send email" you will receive an email with a link to reset your password</p>
+    </div>       
+    <Submit text="Send email" id="sign-in-button" slot="buttons"/>
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6" slot="after-main">
+        <p class="text-white">Don't have an account? <a href="register" class="font-bold hover:underline">Sign up</a>.</p>
+    </div>
+</Main>
