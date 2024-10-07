@@ -4,6 +4,11 @@
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"containerEnv": { 
+		"ASTRO_DATABASE_FILE": "private/data.db",
+		"ASTRO_DB_REMOTE_URL": "file:private/data.db"
+	},
+	"postStartCommand": "pnpm astro db push",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
