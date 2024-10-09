@@ -12,6 +12,7 @@
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
+	"runArgs": ["--hostname","${localEnv:OAUTH_ASTRO_CONTAINER_HOSTNAME:astro.dev}"],
 	"customizations": {
 		"vscode": {
 			"extensions": [
