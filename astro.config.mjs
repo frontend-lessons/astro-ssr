@@ -5,6 +5,7 @@ import db from '@astrojs/db';
 import node from '@astrojs/node';
 import tailwind from '@astrojs/tailwind';
 
+const routes = JSON.parse(fs.readFileSync("./private/routes.json").toString());
 const options = {
 	key: fs.readFileSync("./private/server.key"),
 	cert: fs.readFileSync("./private/server.crt")
@@ -12,6 +13,7 @@ const options = {
 
 // https://astro.build/config
 export default defineConfig({
+    routes,
     output: 'server',
     vite: { server: {https: options} },
     adapter: node({mode:'standalone'}),

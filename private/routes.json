@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Private pages",
+        "path": "/^\\/private(\\/.*)?$/"
+    },
+    {
+        "name": "Hidden folders",
+        "path": "/\\/hidden\\//"
+    },
+    {
+        "name": "Admin area",
+        "path": "/^\\/admin(\\/.*)?$/"
+    }
+]
