@@ -12,3 +12,10 @@ export function typeOfRequest(request: Request): RequestType
             return "DOCUMENT" as RequestType;    
     }
 }
+
+type Route = {
+    path: RegExp | string;
+    name?: string;
+}
+
+export type Routes = Route[];

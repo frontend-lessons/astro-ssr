@@ -1,11 +1,16 @@
 // @ts-check
 import fs from 'node:fs';
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField, type AstroUserConfig } from 'astro/config';
 import db from '@astrojs/db';
 import node from '@astrojs/node';
 import tailwind from '@astrojs/tailwind';
+import { type Routes }  from './src/classes/server';
 
-const routes = JSON.parse(fs.readFileSync("./private/routes.json").toString());
+interface ExtendedAstroUserConfig extends AstroUserConfig{
+    routes : Routes
+}
+
+const routes = JSON.parse(fs.readFileSync("./private/routes.json").toString()) as Routes;
 const options = {
 	key: fs.readFileSync("./private/server.key"),
 	cert: fs.readFileSync("./private/server.crt")
@@ -37,4 +42,4 @@ export default defineConfig({
             }
         }
     }
-});
+} as ExtendedAstroUserConfig);
