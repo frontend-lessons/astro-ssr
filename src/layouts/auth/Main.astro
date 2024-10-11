@@ -4,9 +4,10 @@ import {Input, Password} from '../../components/auth/inputs'
 interface Props {
 	title: string;
     action: string;
+    useFetch?: boolean;    
 }
 
-const { title, action } = Astro.props;
+const { title, action, useFetch = false } = Astro.props;
 ---
 <Layout title={ title }>  
     <div slot="main">
@@ -17,14 +18,40 @@ const { title, action } = Astro.props;
             </section>
 
             <section class="mt-10">
-                <form class="flex flex-col" method="POST" action='#'>
+                <form class="flex flex-col" method="POST" action=`/actions/${action}` enctype="application/x-www-form-urlencoded">
                     <slot name="inputs">
                         <Input label="Email" name="email"/>
                         <Password label="Password" name="password"/>
                     </slot>
                     <slot name="after-inputs" />
                     <slot name="buttons" />
-                </form>
+                </form> { useFetch &&
+                <script define:vars={{ action }}>    
+                    window.addEventListener('DOMContentLoaded', function(){    
+                        const form = document.querySelector('form');
+                        form.addEventListener('submit', async function(evt){
+                            evt.preventDefault();
+                            try{          
+                                const formData = new FormData(form);  
+                                const response = await fetch(form.action, {
+                                    body: JSON.stringify(Object.fromEntries(formData)),
+                                    method: 'POST', 
+                                    headers: {
+                                        'Accept':'application/json',
+                                        'Content-Type': 'application/json'
+                                    }
+                                });
+                                
+                                if (response.status >= 300 && response.status <400){
+                                    const data = await response.json();
+                                    window.location.replace(data.redirect);
+                                }
+                            }catch(error){
+                                console.error(error);
+                            }
+                        });
+                    });
+                </script> }                    
             </section>    
         </main>
         <slot name="after-main" />
@@ -37,26 +64,3 @@ const { title, action } = Astro.props;
         background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
     }
 </style>
-<script define:vars={{ action }} >    
-    const form = document.querySelector('form');
-    form.addEventListener('submit', async function(evt){
-        evt.preventDefault();
-        try{          
-            const formData = new FormData(form);  
-            const response = await fetch(`/actions/${action}`, {
-                body: JSON.stringify(Object.fromEntries(formData)),
-                method: 'POST', 
-                headers: {
-                    'Accept':'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-            data = await response.json();
-            if (data.redirect){
-                window.location.replace(data.redirect);
-            }
-        }catch(error){
-            console.error(error.message);
-        }
-    });
-</script>
