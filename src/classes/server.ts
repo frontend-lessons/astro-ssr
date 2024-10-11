@@ -13,7 +13,7 @@ export function typeOfRequest(request: Request): RequestType
     }
 }
 
-type Route = {
+export type Route = {
     path: RegExp | string;
     name?: string;
 }
