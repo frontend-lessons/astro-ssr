@@ -17,7 +17,8 @@
 				"astro-build.astro-vscode",
 				"linbudu.pnpm-vscode-helper",
 				"loiane.ts-extension-pack",
-				"mhutchie.git-graph"
+				"mhutchie.git-graph",
+				"donjayamanne.githistory"
 			]
 		}
 	}
