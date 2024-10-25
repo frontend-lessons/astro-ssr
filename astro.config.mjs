@@ -5,6 +5,8 @@ import db from '@astrojs/db';
 import node from '@astrojs/node';
 import tailwind from '@astrojs/tailwind';
 
+const HOSTNAME = process.env.HOSTNAME
+
 const options = {
 	key: fs.readFileSync("./private/server.key"),
 	cert: fs.readFileSync("./private/server.crt")
@@ -15,6 +17,6 @@ export default defineConfig({
     output: 'server',
     vite: { server: {https: options} },
     adapter: node({mode:'standalone'}),
-    site: 'https://astro.dev',
+    site: `https://${HOSTNAME}}`,
     integrations: [db(), tailwind()],
 });
