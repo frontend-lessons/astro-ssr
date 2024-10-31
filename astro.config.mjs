@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind';
 
 
 const HOSTNAME = process.env.HOSTNAME
+const PORT = parseInt(process.env.PORT) 
 
 const options = {
 	key: fs.readFileSync("./private/server.key"),
@@ -15,7 +16,8 @@ const options = {
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    vite: { server: {https: options} },
+    vite: { server: {https: options, port: PORT }},
+    server: { port: PORT },
     adapter: node({mode:'standalone'}),
     site: `https://${HOSTNAME}}`,
     integrations: [tailwind()],

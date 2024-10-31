@@ -11,6 +11,7 @@
 		}
 	},
 	"runArgs": ["--hostname","${localEnv:OAUTH_ASTRO_CONTAINER_HOSTNAME:astro.dev}"],
+	"containerEnv": { "PORT": "8080" },
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -21,13 +22,20 @@
 				"donjayamanne.githistory"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [8080],
+	"portsAttributes": {
+		"8080": {
+			"label": "FrontendToBackend",
+			"requireLocalPort": true,
+			"elevateIfNeeded": true
+		}
+	}
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",
