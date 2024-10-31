@@ -5,6 +5,7 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
 	"containerEnv": { 
+		"PORT": "8080",
 		"ASTRO_DATABASE_FILE": "private/data.db",
 		"ASTRO_DB_REMOTE_URL": "file:private/data.db",
 		"SESSION_SALT": "9'98U'VASDNP2W--13E02W*"	
@@ -27,13 +28,20 @@
 				"donjayamanne.githistory"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [8080],
+	"portsAttributes": {
+		"8080": {
+			"label": "FrontendToBackend",
+			"requireLocalPort": true,
+			"elevateIfNeeded": true
+		}
+	}
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",

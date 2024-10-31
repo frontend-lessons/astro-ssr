@@ -9,6 +9,7 @@ import tailwind from '@astrojs/tailwind';
 import { sessionPresets } from './private/sessionMode.mjs';
 
 const HOSTNAME = process.env.HOSTNAME
+const PORT = parseInt(process.env.PORT) 
 const APP_MODE = process.env.APP_MODE;
 const SESSION = sessionPresets(APP_MODE);
 
@@ -20,7 +21,8 @@ const options = {
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    vite: { server: {https: options} },
+    vite: { server: {https: options, port: PORT }},
+    server: { port: PORT },
     adapter: node({mode:'standalone'}),
     site: `https://${HOSTNAME}}`,
     integrations: [db(), tailwind()],

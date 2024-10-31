@@ -3,12 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "ssr": "SERVER_KEY_PATH=./private/server.key SERVER_CERT_PATH=./private/server.crt  HOST=127.0.0.1 PORT=4321 node ./dist/server/entry.mjs"
+    "ssr": "SERVER_KEY_PATH=./private/server.key SERVER_CERT_PATH=./private/server.crt  HOST=127.0.0.1 PORT=$PORT node ./dist/server/entry.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
