@@ -6,7 +6,8 @@
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
 	"containerEnv": { 
 		"ASTRO_DATABASE_FILE": "private/data.db",
-		"ASTRO_DB_REMOTE_URL": "file:private/data.db"
+		"ASTRO_DB_REMOTE_URL": "file:private/data.db",
+		"SESSION_SALT": "9'98U'VASDNP2W--13E02W*"	
 	},
 	"postStartCommand": "pnpm astro db push",
 	"features": {

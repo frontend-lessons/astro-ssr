@@ -34,7 +34,10 @@ export default defineConfig({
                 // APP_MODE RELATED ENV VARS                
                 SESSION_MODE: envField.enum({ context: "server", access: "public", values: ['COOKIE', 'LUCIA', 'JWT', 'AUTHJS'], default: SESSION.MODE}),
                 SESSION_STORAGE: envField.enum({ context: "server", access: "secret", values: ['NONE', 'SQLITE', 'BACKEND'], default: SESSION.STORAGE}),
-                OAUTH: envField.boolean({context: "client", access: "public", default: SESSION.OAUTH})                
+                OAUTH: envField.boolean({context: "client", access: "public", default: SESSION.OAUTH}),
+                // AUTH RELATED ENV VARS
+                SESSION_SALT: envField.string({ access: "secret", context: "server" }),
+
             },
             validateSecrets: true
         }
